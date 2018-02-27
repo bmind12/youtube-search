@@ -14,7 +14,6 @@ class App extends PureComponent {
         return (
             <div>
                 <Search />
-                <button onClick={this.handleClick}>Click</button>
             </div>
         )
     }
