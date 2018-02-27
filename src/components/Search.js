@@ -1,9 +1,10 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { reduxForm, Field } from 'redux-form'
 
-let Search = () => 
+let Search = ({ handleSubmit, submitting }) =>
     <form>
-        <input type="text"/>
+        <Field component="input" name="search" />
+        <button disabled={submitting} type="submit">Search</button>
     </form>
 
 Search = reduxForm({
