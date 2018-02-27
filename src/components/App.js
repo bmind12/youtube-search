@@ -1,13 +1,27 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent } from 'react'
+import { connect } from 'react-redux'
+import { runCheck } from '../AC/check'
+
+/* Components */
+import Search from './Search'
 
 class App extends PureComponent {
-  render() {
-    return (
-      <div>
-        Hello world
-      </div>
-    );
-  }
+    handleClick = () => {
+        this.props.runCheck('success')
+    }
+
+    render() {
+        return (
+            <div>
+                <Search />
+                <button onClick={this.handleClick}>Click</button>
+            </div>
+        )
+    }
 }
 
-export default App;
+export default connect(({ check }) => ({
+    check
+}), {
+    runCheck
+})(App)
