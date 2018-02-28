@@ -13,7 +13,7 @@ export const searchVideos = ({ query }) => {
             KEY: key,
             MAX_RESULTS: maxResults,
             PART: part,
-            TYPE: type
+            TYPE_VIDEO: type
         } = PARAMETERS
 
         const config = {
