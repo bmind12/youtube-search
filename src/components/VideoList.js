@@ -5,9 +5,15 @@ const Videos = props => {
     const renderVideoItems = (list) =>
         list.map(video =>
             <ListItem>
-                <img src={video.snippet.thumbnails.high.url} width={120} height={90} />
+                <img
+                    alt="Video item"
+                    height={90}
+                    src={video.snippet.thumbnails.high.url}
+                    width={120}
+                />
                 <ListItemText
                     primary={video.snippet.title}
+                    secondary={video.snippet.channelTitle}
                 />
             </ListItem>
         )
