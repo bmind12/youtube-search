@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
-import { runCheck } from '../AC/check'
+import { searchVideos } from '../AC/search'
 
 /* Components */
 import Search from './Search'
@@ -22,5 +22,5 @@ class App extends PureComponent {
 export default connect(({ check }) => ({
     check
 }), {
-    runCheck
+    searchVideos
 })(App)

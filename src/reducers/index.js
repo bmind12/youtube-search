@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux'
 
 /* Reducers */
-import check from './check'
+import search from './search'
 import { reducer as formReducer } from 'redux-form'
 
 export default combineReducers({
-    check,
+    search,
     form: formReducer
 })
