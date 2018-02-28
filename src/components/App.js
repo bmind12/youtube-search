@@ -1,17 +1,17 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
-import { searchVideos } from '../AC/search'
+import { searchVideos } from '../AC/videos'
 
 /* Components */
 import Search from './Search'
 
 const App = props =>
-            <div>
+    <div>
         <Search onSubmit={props.searchVideos} />
-            </div>
+    </div>
 
-export default connect(({ check }) => ({
-    check
+export default connect(({ videos }) => ({
+    videos
 }), {
     searchVideos
 })(App)
