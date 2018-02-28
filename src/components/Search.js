@@ -40,6 +40,7 @@ let Search = ({
             color="primary"
             disabled={pristine || submitting}
             type="submit"
+            variant="raised"
         >
             Search
         </Button>
