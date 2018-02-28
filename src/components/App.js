@@ -5,19 +5,10 @@ import { searchVideos } from '../AC/search'
 /* Components */
 import Search from './Search'
 
-class App extends PureComponent {
-    handleClick = () => {
-        this.props.runCheck('success')
-    }
-
-    render() {
-        return (
+const App = props =>
             <div>
-                <Search />
+        <Search onSubmit={props.searchVideos} />
             </div>
-        )
-    }
-}
 
 export default connect(({ check }) => ({
     check
