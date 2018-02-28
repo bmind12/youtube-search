@@ -9,27 +9,33 @@ export const searchVideos = ({ query }) => {
         })
 
         const api = ENDPOINTS.YOUTUBE_VIDEOS
+        const {
+            KEY: key,
+            MAX_RESULTS: maxResults,
+            PART: part,
+            TYPE: type
+        } = PARAMETERS
 
         const config = {
             params: {
-                part: PARAMETERS.PART,
+                key,
+                maxResults,
+                part,
                 q: query,
-                type: PARAMETERS.TYPE
+                type
             }
         }
 
         axios.get(api, config)
             .then((response) => {
-                debugger;
                 dispatch({
                     type: SEARCH_SUCCESS,
                     payload: {
-                        videos: response.data
+                        data: response.data.items
                     }
                 })
             })
             .catch((error) => {
-                debugger;
                 dispatch({
                     type: SEARCH_FAILURE,
                     payload: {
