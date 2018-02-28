@@ -33,7 +33,7 @@ let Search = ({
         <Field
             component={renderTextField}
             label="Search"
-            name="search"
+            name="query"
         />
         <Button
             className={classes.button}
