@@ -1,20 +1,18 @@
 import React from 'react'
-import List, { ListItem, ListItemText } from 'material-ui/List'
+import List from 'material-ui/List'
+import VideoListItem from './VideoListItem'
 
-const Videos = props => {
+const VideoList = props => {
     const renderVideoItems = (list) =>
         list.map(video =>
-            <ListItem>
-                <img
-                    alt="Video item"
-                    src={video.snippet.thumbnails.high.url}
-                    width={120}
-                />
-                <ListItemText
-                    primary={video.snippet.title}
-                    secondary={video.snippet.channelTitle}
-                />
-            </ListItem>
+            <VideoListItem
+                changeCurrentVideo={props.changeCurrentVideo}
+                channel={video.snippet.channelTitle}
+                id={video.id.videoId}
+                key={video.id.videoId}
+                thumbnail={video.snippet.thumbnails.high.url}
+                title={video.snippet.title}
+            />
         )
 
     return (
@@ -24,4 +22,4 @@ const Videos = props => {
     )
 }
 
-export default Videos
+export default VideoList

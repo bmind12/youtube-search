@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { searchVideos } from '../AC/videos'
+import { changeCurrentVideo, searchVideos } from '../AC/videos'
 
 /* Components */
 import { CircularProgress } from 'material-ui/Progress'
@@ -10,14 +10,16 @@ import Search from './Search'
 import VideoList from './VideoList'
 import YouTubePlayer from 'react-youtube'
 
-const App = ({ classes, searchVideos, videos }) => {
+const App = (props) => {
+
+    const { videos } = props
 
     const renderVideoList = () => {
         if (videos.data.length > 0) {
             return (
                 <Grid item xs={12} md={4}>
                     <Paper>
-                        <VideoList data={videos.data} />
+                        <VideoList data={videos.data} changeCurrentVideo={props.changeCurrentVideo} />
                     </Paper>
                 </Grid>
             )
@@ -39,7 +41,7 @@ const App = ({ classes, searchVideos, videos }) => {
 
     return (
         <div>
-            <Search onSubmit={searchVideos} />
+            <Search onSubmit={props.searchVideos} />
             <Grid container spacing={24}>
                 {renderVideoPlayer()}
                 {renderVideoList()}
@@ -51,5 +53,6 @@ const App = ({ classes, searchVideos, videos }) => {
 export default connect(({ videos }) => ({
     videos
 }), {
+    changeCurrentVideo,
     searchVideos
 })(App)

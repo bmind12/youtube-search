@@ -1,6 +1,20 @@
 import axios from 'axios'
-import { FETCH_VIDEOS, FETCH_VIDEOS_SUCCESS, FETCH_VIDEOS_FAILURE } from '../const/action-creators'
+import {
+    CHANGE_CURRENT_VIDEO,
+    FETCH_VIDEOS,
+    FETCH_VIDEOS_FAILURE,
+    FETCH_VIDEOS_SUCCESS
+} from '../const/action-creators'
 import { ENDPOINTS, PARAMETERS } from '../const/api'
+
+export const changeCurrentVideo = (activeVideoId) => {
+    return {
+        type: CHANGE_CURRENT_VIDEO,
+        payload: {
+            activeVideoId
+        }
+    }
+}
 
 export const searchVideos = ({ query }) => {
     return (dispatch) => {
