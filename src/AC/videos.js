@@ -1,11 +1,11 @@
 import axios from 'axios'
-import { SEARCH, SEARCH_SUCCESS, SEARCH_FAILURE } from '../const/action-creators'
+import { FETCH_VIDEOS, FETCH_VIDEOS_SUCCESS, FETCH_VIDEOS_FAILURE } from '../const/action-creators'
 import { ENDPOINTS, PARAMETERS } from '../const/api'
 
 export const searchVideos = ({ query }) => {
     return (dispatch) => {
         dispatch({
-            type: SEARCH
+            type: FETCH_VIDEOS
         })
 
         const api = ENDPOINTS.YOUTUBE_VIDEOS
@@ -29,7 +29,7 @@ export const searchVideos = ({ query }) => {
         axios.get(api, config)
             .then((response) => {
                 dispatch({
-                    type: SEARCH_SUCCESS,
+                    type: FETCH_VIDEOS_SUCCESS,
                     payload: {
                         data: response.data.items
                     }
@@ -37,7 +37,7 @@ export const searchVideos = ({ query }) => {
             })
             .catch((error) => {
                 dispatch({
-                    type: SEARCH_FAILURE,
+                    type: FETCH_VIDEOS_FAILURE,
                     payload: {
                         error: error.message
                     }

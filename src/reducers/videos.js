@@ -1,18 +1,18 @@
-import { SEARCH, SEARCH_SUCCESS, SEARCH_FAILURE } from '../const/action-creators'
+import { FETCH_VIDEOS, FETCH_VIDEOS_SUCCESS, FETCH_VIDEOS_FAILURE } from '../const/action-creators'
 import { VIDEOS_DEFAULT } from '../const/default-states'
 
 export default (state = VIDEOS_DEFAULT, action) => {
     const { type, payload } = action
 
     switch (type) {
-        case SEARCH: {
+        case FETCH_VIDEOS: {
             return Object.assign({}, state, {
                 error: '',
                 isFetching: true
             })
         }
 
-        case SEARCH_SUCCESS: {
+        case FETCH_VIDEOS_SUCCESS: {
             return Object.assign({}, state, {
                 error: '',
                 data: payload.data,
@@ -20,7 +20,7 @@ export default (state = VIDEOS_DEFAULT, action) => {
             })
         }
 
-        case SEARCH_FAILURE: {
+        case FETCH_VIDEOS_FAILURE: {
             return Object.assign({}, state, {
                 error: payload.errorMessage,
                 data: [],
