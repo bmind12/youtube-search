@@ -30,17 +30,12 @@ const App = ({ classes, searchVideos, videos }) => {
         }
     }
 
-    const renderVideoPlayer = () => {
-        const videoId = videos.data[0] && videos.data[0].id.videoId
-
-        return (
-            <Grid item xs={12} md={8}>
-                <YouTubePlayer
-                    videoId={videoId}
-                />
-            </Grid>
-        )
-    }
+    const renderVideoPlayer = () =>
+        <Grid item xs={12} md={8}>
+            <YouTubePlayer
+                videoId={videos.activeVideoId}
+            />
+        </Grid>
 
     return (
         <div>

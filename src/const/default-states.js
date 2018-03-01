@@ -1,3 +1,4 @@
 export const VIDEOS_DEFAULT = {
-    data: []
+    data: [],
+    activeVideoId: 'DLzxrzFCyOs'
 }
