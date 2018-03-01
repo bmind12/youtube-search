@@ -8,14 +8,14 @@ import Grid from 'material-ui/Grid'
 import Paper from 'material-ui/Paper'
 import Search from './Search'
 import VideoList from './VideoList'
-import VideoPlayer from './VideoPlayer'
+import YouTubePlayer from 'react-youtube'
 
 const App = ({ classes, searchVideos, videos }) => {
 
     const renderVideoList = () => {
         if (videos.data.length > 0) {
             return (
-                <Grid item xs={12} sm={4}>
+                <Grid item xs={12} md={4}>
                     <Paper>
                         <VideoList data={videos.data} />
                     </Paper>
@@ -30,12 +30,17 @@ const App = ({ classes, searchVideos, videos }) => {
         }
     }
 
-    const renderVideoPlayer = () =>
-        <Grid item xs={12} sm={8}>
-            <Paper>
-                <VideoPlayer />
-            </Paper>
-        </Grid>
+    const renderVideoPlayer = () => {
+        const videoId = videos.data[0] && videos.data[0].id.videoId
+
+        return (
+            <Grid item xs={12} md={8}>
+                <YouTubePlayer
+                    videoId={videoId}
+                />
+            </Grid>
+        )
+    }
 
     return (
         <div>
