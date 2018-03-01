@@ -32,18 +32,15 @@ const App = (props) => {
         }
     }
 
-    const renderVideoPlayer = () =>
-        <Grid item xs={12} md={8}>
-            <YouTubePlayer
-                videoId={videos.activeVideoId}
-            />
-        </Grid>
-
     return (
         <div>
             <Search onSubmit={props.searchVideos} />
             <Grid container spacing={24}>
-                {renderVideoPlayer()}
+                <Grid item xs={12} md={8}>
+                    <YouTubePlayer
+                        videoId={videos.activeVideoId}
+                    />
+                </Grid>
                 {renderVideoList()}
             </Grid>
         </div>
