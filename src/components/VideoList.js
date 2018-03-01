@@ -7,7 +7,6 @@ const Videos = props => {
             <ListItem>
                 <img
                     alt="Video item"
-                    height={90}
                     src={video.snippet.thumbnails.high.url}
                     width={120}
                 />
