@@ -32,7 +32,7 @@ const styles = theme => ({
     spinner: {
         height: '100%'
     }
-});
+})
 
 const App = (props) => {
 
