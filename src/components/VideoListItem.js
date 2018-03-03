@@ -1,4 +1,5 @@
 import React from 'react'
+import propTypes from 'prop-types'
 
 /* Material UI */
 import Divider from 'material-ui/Divider'
@@ -37,6 +38,15 @@ const VideoListItem = (props) => {
             <Divider />
         </div>
     )
+}
+
+VideoListItem.propTypes = {
+    changeCurrentVideo: propTypes.func.isRequired,
+    channel: propTypes.string,
+    desc: propTypes.string,
+    id: propTypes.string,
+    thumbnail: propTypes.string,
+    title: propTypes.string
 }
 
 export default VideoListItem

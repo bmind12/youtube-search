@@ -1,4 +1,5 @@
 import React from 'react'
+import propTypes from 'prop-types'
 
 /* Material UI */
 import Grow from 'material-ui/transitions/Grow'
@@ -31,6 +32,11 @@ const VideoList = props => {
             </Paper>
         </Grow>
     )
+}
+
+VideoList.propTypes = {
+    changeCurrentVideo: propTypes.func.isRequired,
+    data: propTypes.array
 }
 
 export default VideoList

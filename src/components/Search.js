@@ -55,7 +55,10 @@ Search = reduxForm({
 })(Search)
 
 Search.propTypes = {
-    classes: propTypes.object.isRequired
+    classes: propTypes.object,
+    handleSubmit: propTypes.func,
+    pristine: propTypes.bool,
+    submitting: propTypes.bool
 }
 
 export default withStyles(styles)(Search)

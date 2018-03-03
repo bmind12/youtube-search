@@ -1,4 +1,5 @@
 import React from 'react'
+import propTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { changeCurrentVideo, searchVideos } from '../AC/videos'
 
@@ -113,6 +114,23 @@ const App = (props) => {
             </Grid>
         </Grid>
     )
+}
+
+App.propTypes = {
+    changeCurrentVideo: propTypes.func.isRequired,
+    classes: propTypes.object,
+    searchVideos: propTypes.func.isRequired,
+    videos: propTypes.shape({
+        activeVideo: propTypes.shape({
+            id: propTypes.string.isRequired,
+            title: propTypes.string,
+            desc: propTypes.string
+        }),
+        data: propTypes.array,
+        errorMessage: propTypes.string,
+        isFetching: propTypes.bool,
+        totalResults: propTypes.number
+    })
 }
 
 export default withStyles(styles)(
