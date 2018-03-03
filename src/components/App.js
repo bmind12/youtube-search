@@ -27,6 +27,9 @@ const styles = theme => ({
         paddingTop: 16,
         paddingBottom: 16
     }),
+    spinner: {
+        height: '100%'
+    }
 });
 
 const App = (props) => {
@@ -65,7 +68,17 @@ const App = (props) => {
         if (data.length > 0 && !isFetching) {
             return <VideoList data={data} changeCurrentVideo={changeCurrentVideo} />
         } else if (isFetching) {
-            return <CircularProgress />
+            return (
+                <Grid
+                    alignItems="center"
+                    className={classes.spinner}
+                    container
+                    direction="column"
+                    justify="center"
+                >
+                    <CircularProgress />
+                </Grid>
+            )
         } else if (errorMessage) {
             return (
                 <Paper className={classes.errorPaper}>
