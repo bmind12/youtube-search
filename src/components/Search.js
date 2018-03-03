@@ -22,29 +22,33 @@ const renderTextField = ({ input, label }) => (
     <TextField label={label} {...input} />
 )
 
-let Search = ({
-    classes,
-    handleSubmit,
-    pristine,
-    reset,
-    submitting
-}) =>
-    <form onSubmit={handleSubmit}>
-        <Field
-            component={renderTextField}
-            label="Search"
-            name="query"
-        />
-        <Button
-            className={classes.button}
-            color="primary"
-            disabled={pristine || submitting}
-            type="submit"
-            variant="raised"
-        >
-            Search
-        </Button>
-    </form>
+let Search = (props) => {
+    const {
+        classes,
+        handleSubmit,
+        pristine,
+        submitting
+    } = props
+
+    return (
+        <form onSubmit={handleSubmit}>
+            <Field
+                component={renderTextField}
+                label="Search"
+                name="query"
+            />
+            <Button
+                className={classes.button}
+                color="primary"
+                disabled={pristine || submitting}
+                type="submit"
+                variant="raised"
+            >
+                Search
+            </Button>
+        </form>
+    )
+}
 
 Search = reduxForm({
     form: 'search'
