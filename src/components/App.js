@@ -23,7 +23,7 @@ const styles = theme => ({
         paddingBottom: 16,
         marginTop: theme.spacing.unit,
     }),
-    errorPaper: theme.mixins.gutters({
+    sidebar: theme.mixins.gutters({
         paddingTop: 16,
         paddingBottom: 16
     }),
@@ -63,10 +63,18 @@ const App = (props) => {
 
     const renderVideoList = () => {
         const { changeCurrentVideo, classes, videos } = props
-        const { data, errorMessage, isFetching } = videos
+        const { data, errorMessage, isFetching, totalResults } = videos
 
-        if (data.length > 0 && !isFetching) {
+        if (totalResults > 0) {
             return <VideoList data={data} changeCurrentVideo={changeCurrentVideo} />
+        } else if (totalResults === 0) {
+            return (
+                <Paper className={classes.sidebar}>
+                    <Typography color="secondary" component="p" variant="subheading">
+                        No videos found
+                    </Typography>
+                </Paper>
+            )
         } else if (isFetching) {
             return (
                 <Grid
@@ -81,7 +89,7 @@ const App = (props) => {
             )
         } else if (errorMessage) {
             return (
-                <Paper className={classes.errorPaper}>
+                <Paper className={classes.sidebar}>
                     <Typography color="secondary" component="p" variant="subheading">
                         {errorMessage}
                     </Typography>

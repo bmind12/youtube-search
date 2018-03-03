@@ -10,5 +10,6 @@ export const VIDEOS_DEFAULT = {
 
             all rights belong to their respective owners and publishers. I do not own any rights and remastering/new quality was solely done from original sources. No copyright infringment is intended and the content owner (PWL/Rick Astley/respective owners) is recognized & acknownledged.
         `
-    }
+    },
+    totalResults: null
 }

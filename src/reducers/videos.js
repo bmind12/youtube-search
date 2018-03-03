@@ -25,7 +25,8 @@ export default (state = VIDEOS_DEFAULT, action) => {
             return Object.assign({}, state, {
                 errorMessage: '',
                 data: [],
-                isFetching: true
+                isFetching: true,
+                totalResults: null
             })
         }
 
@@ -33,7 +34,8 @@ export default (state = VIDEOS_DEFAULT, action) => {
             return Object.assign({}, state, {
                 error: '',
                 data: payload.data,
-                isFetching: false
+                isFetching: false,
+                totalResults: payload.totalResults
             })
         }
 
@@ -41,7 +43,8 @@ export default (state = VIDEOS_DEFAULT, action) => {
             return Object.assign({}, state, {
                 errorMessage: payload.errorMessage,
                 data: [],
-                isFetching: false
+                isFetching: false,
+                totalResults: null
             })
         }
 

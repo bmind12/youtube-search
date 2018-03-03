@@ -44,10 +44,13 @@ export const searchVideos = ({ query }) => {
 
         axios.get(api, config)
             .then((response) => {
+                const { items, pageInfo } = response.data
+
                 dispatch({
                     type: FETCH_VIDEOS_SUCCESS,
                     payload: {
-                        data: response.data.items
+                        data: items,
+                        totalResults: pageInfo.totalResults
                     }
                 })
             })
