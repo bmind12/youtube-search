@@ -1,5 +1,7 @@
 import React from 'react'
+import Grow from 'material-ui/transitions/Grow'
 import List from 'material-ui/List'
+import Paper from 'material-ui/Paper'
 import VideoListItem from './VideoListItem'
 
 const VideoList = props => {
@@ -17,9 +19,13 @@ const VideoList = props => {
         )
 
     return (
-        <List>
-            {renderVideoItems(props.data)}
-        </List>
+        <Grow in={true} >
+            <Paper>
+                <List>
+                    {renderVideoItems(props.data)}
+                </List>
+            </Paper>
+        </Grow>
     )
 }
 

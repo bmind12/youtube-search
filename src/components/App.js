@@ -1,7 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { changeCurrentVideo, searchVideos } from '../AC/videos'
+import { withStyles } from 'material-ui/styles'
 import withWidth from 'material-ui/utils/withWidth'
+import Grow from 'material-ui/transitions/Grow'
 
 /* Components */
 import { CircularProgress } from 'material-ui/Progress'
@@ -14,6 +16,18 @@ import YouTubePlayer from 'react-youtube'
 
 /* Constants */
 import { VIDEO_HEIGHTS } from '../const/styles'
+
+const styles = theme => ({
+    videoDescPaper: theme.mixins.gutters({
+        paddingTop: 16,
+        paddingBottom: 16,
+        marginTop: theme.spacing.unit,
+    }),
+    errorPaper: theme.mixins.gutters({
+        paddingTop: 16,
+        paddingBottom: 16
+    }),
+});
 
 const App = (props) => {
 
@@ -30,12 +44,16 @@ const App = (props) => {
                     videoId={videos.activeVideo.id}
                     opts={opts}
                 />
-                <Typography variant="title" gutterBottom>
-                    {videos.activeVideo.title}
-                </Typography>
-                <Typography variant="caption" paragraph>
-                    {videos.activeVideo.desc}
-                </Typography>
+                <Grow in={true}>
+                    <Paper className={props.classes.videoDescPaper}>
+                        <Typography component="h1" gutterBottom variant="title">
+                            {videos.activeVideo.title}
+                        </Typography>
+                        <Typography component="p" paragraph variant="caption">
+                            {videos.activeVideo.desc}
+                        </Typography>
+                    </Paper>
+                </Grow>
             </div>
         )
     }
@@ -67,18 +85,20 @@ const App = (props) => {
             <Grid item xs={12} sm={8} md={8}>
                 {renderPlayer()}
             </Grid>
-            <Grid item xs={12} md={4}>
-                <Paper>
-                    {renderVideoList()}
-                </Paper>
+            <Grid item xs={12} sm={8} md={4}>
+                {renderVideoList()}
             </Grid>
         </Grid>
     )
 }
 
-export default withWidth()(connect(({ videos }) => ({
-    videos
-}), {
-    changeCurrentVideo,
-    searchVideos
-})(App))
+export default withStyles(styles)(
+    withWidth()(
+        connect(({ videos }) => ({
+            videos
+        }), {
+            changeCurrentVideo,
+            searchVideos
+        })(App)
+    )
+)
