@@ -20,7 +20,6 @@ const VideoListItem = (props) => {
         classes,
         desc,
         id,
-        styles,
         thumbnail,
         title
     } = props
