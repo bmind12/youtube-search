@@ -23,7 +23,8 @@ export default (state = VIDEOS_DEFAULT, action) => {
 
         case FETCH_VIDEOS: {
             return Object.assign({}, state, {
-                error: '',
+                errorMessage: '',
+                data: [],
                 isFetching: true
             })
         }
@@ -38,7 +39,7 @@ export default (state = VIDEOS_DEFAULT, action) => {
 
         case FETCH_VIDEOS_FAILURE: {
             return Object.assign({}, state, {
-                error: payload.errorMessage,
+                errorMessage: payload.errorMessage,
                 data: [],
                 isFetching: false
             })

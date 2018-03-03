@@ -55,7 +55,7 @@ export const searchVideos = ({ query }) => {
                 dispatch({
                     type: FETCH_VIDEOS_FAILURE,
                     payload: {
-                        error: error.message
+                        errorMessage: error.message
                     }
                 })
             });

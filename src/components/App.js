@@ -41,18 +41,21 @@ const App = (props) => {
     }
 
     const renderVideoList = () => {
-        const { changeCurrentVideo, videos } = props
+        const { changeCurrentVideo, classes, videos } = props
+        const { data, errorMessage, isFetching } = videos
 
-        if (videos.data.length > 0) {
+        if (data.length > 0 && !isFetching) {
+            return <VideoList data={data} changeCurrentVideo={changeCurrentVideo} />
+        } else if (isFetching) {
+            return <CircularProgress />
+        } else if (errorMessage) {
             return (
-                <VideoList data={videos.data} changeCurrentVideo={changeCurrentVideo} />
+                <Paper className={classes.errorPaper}>
+                    <Typography color="secondary" component="p" variant="subheading">
+                        {errorMessage}
+                    </Typography>
+                </Paper>
             )
-        } else if (videos.isFetching) {
-            return (
-                <CircularProgress />
-            )
-        } else {
-            return null
         }
     }
 
