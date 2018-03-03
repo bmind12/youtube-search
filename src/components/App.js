@@ -1,16 +1,18 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { changeCurrentVideo, searchVideos } from '../AC/videos'
-import { withStyles } from 'material-ui/styles'
-import withWidth from 'material-ui/utils/withWidth'
-import Grow from 'material-ui/transitions/Grow'
 
-/* Components */
+/* Material UI */
 import { CircularProgress } from 'material-ui/Progress'
 import Grid from 'material-ui/Grid'
+import Grow from 'material-ui/transitions/Grow'
 import Paper from 'material-ui/Paper'
-import Search from './Search'
 import Typography from 'material-ui/Typography'
+import { withStyles } from 'material-ui/styles'
+import withWidth from 'material-ui/utils/withWidth'
+
+/* Components */
+import Search from './Search'
 import VideoList from './VideoList'
 import YouTubePlayer from 'react-youtube'
 

@@ -1,6 +1,8 @@
 import React from 'react'
-import { ListItem, ListItemText } from 'material-ui/List'
+
+/* Material UI */
 import Divider from 'material-ui/Divider'
+import { ListItem, ListItemText } from 'material-ui/List'
 
 const VideoListItem = (props) => {
 

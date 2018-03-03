@@ -1,7 +1,11 @@
 import React from 'react'
+
+/* Material UI */
 import Grow from 'material-ui/transitions/Grow'
 import List from 'material-ui/List'
 import Paper from 'material-ui/Paper'
+
+/* Components */
 import VideoListItem from './VideoListItem'
 
 const VideoList = props => {
