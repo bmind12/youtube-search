@@ -4,7 +4,7 @@ export const ENDPOINTS = {
 
 export const PARAMETERS = {
     KEY: 'AIzaSyCPSIbBEPup4xLGbtjASVeIwMwrt62DHHg',
-    MAX_RESULTS: 10,
+    MAX_RESULTS: 7,
     PART: 'snippet',
     TYPE_VIDEO: 'video'
 }
