@@ -12,7 +12,12 @@ export default (state = VIDEOS_DEFAULT, action) => {
     switch (type) {
         case CHANGE_CURRENT_VIDEO: {
             return Object.assign({}, state, {
-                activeVideoId: payload.activeVideoId
+                ...state,
+                activeVideo: {
+                    id: payload.activeVideoId,
+                    title: payload.activeVideoTitle,
+                    desc: payload.activeVideoDesc
+                }
             })
         }
 

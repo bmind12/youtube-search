@@ -12,6 +12,7 @@ const VideoList = props => {
                 key={video.id.videoId}
                 thumbnail={video.snippet.thumbnails.high.url}
                 title={video.snippet.title}
+                desc={video.snippet.description}
             />
         )
 

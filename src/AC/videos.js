@@ -7,11 +7,13 @@ import {
 } from '../const/action-creators'
 import { ENDPOINTS, PARAMETERS } from '../const/api'
 
-export const changeCurrentVideo = (activeVideoId) => {
+export const changeCurrentVideo = (activeVideoId, activeVideoTitle, activeVideoDesc) => {
     return {
         type: CHANGE_CURRENT_VIDEO,
         payload: {
-            activeVideoId
+            activeVideoId,
+            activeVideoTitle,
+            activeVideoDesc
         }
     }
 }

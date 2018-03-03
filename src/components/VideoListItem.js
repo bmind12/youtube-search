@@ -1,28 +1,39 @@
 import React from 'react'
 import { ListItem, ListItemText } from 'material-ui/List'
+import Divider from 'material-ui/Divider'
 
 const VideoListItem = (props) => {
 
-    const { title } = props
+    const {
+        changeCurrentVideo,
+        channel,
+        desc,
+        id,
+        thumbnail,
+        title
+    } = props
 
     const handleCurrentVideoChange = () => {
-        props.changeCurrentVideo(props.id)
+        changeCurrentVideo(id, title, desc)
     }
 
     return (
-        <ListItem
-            onClick={handleCurrentVideoChange}
-        >
-            <img
-                alt={title}
-                src={props.thumbnail}
-                width={120}
-            />
-            <ListItemText
-                primary={title}
-                secondary={props.channel}
-            />
-        </ListItem>
+        <div>
+            <ListItem
+                onClick={handleCurrentVideoChange}
+            >
+                <img
+                    alt={title}
+                    src={thumbnail}
+                    width={120}
+                />
+                <ListItemText
+                    primary={title}
+                    secondary={channel}
+                />
+            </ListItem>
+            <Divider />
+        </div>
     )
 }
 
