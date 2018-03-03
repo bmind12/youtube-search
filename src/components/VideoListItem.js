@@ -4,14 +4,23 @@ import propTypes from 'prop-types'
 /* Material UI */
 import Divider from 'material-ui/Divider'
 import { ListItem, ListItemText } from 'material-ui/List'
+import { withStyles } from 'material-ui/styles'
+
+const styles = theme => ({
+    listItem: {
+        cursor: 'pointer'
+    }
+})
 
 const VideoListItem = (props) => {
 
     const {
         changeCurrentVideo,
         channel,
+        classes,
         desc,
         id,
+        styles,
         thumbnail,
         title
     } = props
@@ -23,6 +32,7 @@ const VideoListItem = (props) => {
     return (
         <div>
             <ListItem
+                className={classes.listItem}
                 onClick={handleCurrentVideoChange}
             >
                 <img
@@ -43,10 +53,11 @@ const VideoListItem = (props) => {
 VideoListItem.propTypes = {
     changeCurrentVideo: propTypes.func.isRequired,
     channel: propTypes.string,
+    classes: propTypes.object,
     desc: propTypes.string,
     id: propTypes.string,
     thumbnail: propTypes.string,
     title: propTypes.string
 }
 
-export default VideoListItem
+export default withStyles(styles)(VideoListItem)
