@@ -35,30 +35,24 @@ const VideoPlayer = (props) => {
         videos
     } = props
 
-    const renderButtons = () => {
-        if (rating) {
-            return (
-                <Grow in={true}>
-                    <Grid container spacing={24} >
-                        <Grid item xs={6} >
-                            <Button color="primary" variant="raised" >Like</Button>
-                        </Grid>
-                        <Grid item xs={6} >
-                            <Button color="primary" variant="raised" >Dislike</Button>
-                        </Grid>
-                    </Grid>
-                </Grow>
-            )
-        }
-    }
-
     return (
         <div>
             <YouTubePlayer
                 videoId={videos.activeVideo.id}
                 opts={opts}
             />
-            { renderButtons() }
+            { rating &&
+                <Grow in={true}>
+                    <Grid container spacing={16} justify="flex-end" >
+                        <Grid item >
+                            <Button color="primary" variant="raised" >Like</Button>
+                        </Grid>
+                        <Grid item >
+                            <Button color="secondary" variant="raised" >Dislike</Button>
+                        </Grid>
+                    </Grid>
+                </Grow>
+            }
             <Grow in={true}>
                 <Paper className={props.classes.videoDescPaper}>
                     <Typography component="h1" gutterBottom variant="title">
