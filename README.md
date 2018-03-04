@@ -24,4 +24,4 @@ yarn start
 
 ### Error:
 
-There is `Incorrect error message when a Secure Page's X-XSS-Protection Report URI is cross-origin error` appears - it's a specific [Chromium bug](https://bugs.chromium.org/p/chromium/issues/detail?id=807304).
+There is `Incorrect error message when a Secure Page's X-XSS-Protection Report URI is cross-origin error` which appears while running - it's a specific [Chromium bug](https://bugs.chromium.org/p/chromium/issues/detail?id=807304).
