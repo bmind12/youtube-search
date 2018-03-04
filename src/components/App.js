@@ -3,17 +3,17 @@ import propTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { changeCurrentVideo, searchVideos } from '../AC/videos'
 
+/* Components */
+import Search from './Search'
+import VideoList from './VideoList'
+import VideoPlayer from './VideoPlayer'
+
 /* Material UI */
 import { CircularProgress } from 'material-ui/Progress'
 import Grid from 'material-ui/Grid'
 import Paper from 'material-ui/Paper'
 import Typography from 'material-ui/Typography'
 import { withStyles } from 'material-ui/styles'
-
-/* Components */
-import Search from './Search'
-import VideoList from './VideoList'
-import VideoPlayer from './VideoPlayer'
 
 const styles = theme => ({
     sidebar: theme.mixins.gutters({

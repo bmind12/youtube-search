@@ -1,18 +1,18 @@
 import React from 'react'
 import propTypes from 'prop-types'
 
+/* Components */
+import YouTubePlayer from 'react-youtube'
+
+/* Constants */
+import { VIDEO_HEIGHTS } from '../const/styles'
+
 /* Material UI */
 import Grow from 'material-ui/transitions/Grow'
 import Paper from 'material-ui/Paper'
 import Typography from 'material-ui/Typography'
 import { withStyles } from 'material-ui/styles'
 import withWidth from 'material-ui/utils/withWidth'
-
-/* Components */
-import YouTubePlayer from 'react-youtube'
-
-/* Constants */
-import { VIDEO_HEIGHTS } from '../const/styles'
 
 const styles = theme => ({
     videoDescPaper: theme.mixins.gutters({

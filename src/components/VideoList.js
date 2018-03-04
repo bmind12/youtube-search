@@ -1,13 +1,13 @@
 import React from 'react'
 import propTypes from 'prop-types'
-
-/* Material UI */
-import Grow from 'material-ui/transitions/Grow'
-import List from 'material-ui/List'
 import Paper from 'material-ui/Paper'
 
 /* Components */
 import VideoListItem from './VideoListItem'
+
+/* Material UI */
+import Grow from 'material-ui/transitions/Grow'
+import List from 'material-ui/List'
 
 const VideoList = props => {
     const renderVideoItems = (list) =>
