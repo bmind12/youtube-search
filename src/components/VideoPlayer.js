@@ -8,6 +8,8 @@ import YouTubePlayer from 'react-youtube'
 import { VIDEO_HEIGHTS } from '../const/styles'
 
 /* Material UI */
+import Button from 'material-ui/Button'
+import Grid from 'material-ui/Grid'
 import Grow from 'material-ui/transitions/Grow'
 import Paper from 'material-ui/Paper'
 import Typography from 'material-ui/Typography'
@@ -28,7 +30,27 @@ const VideoPlayer = (props) => {
         height: VIDEO_HEIGHTS[props.width]
     }
 
-    const { videos } = props
+    const {
+        rating,
+        videos
+    } = props
+
+    const renderButtons = () => {
+        if (rating) {
+            return (
+                <Grow in={true}>
+                    <Grid container spacing={24} >
+                        <Grid item xs={6} >
+                            <Button color="primary" variant="raised" >Like</Button>
+                        </Grid>
+                        <Grid item xs={6} >
+                            <Button color="primary" variant="raised" >Dislike</Button>
+                        </Grid>
+                    </Grid>
+                </Grow>
+            )
+        }
+    }
 
     return (
         <div>
@@ -36,6 +58,7 @@ const VideoPlayer = (props) => {
                 videoId={videos.activeVideo.id}
                 opts={opts}
             />
+            { renderButtons() }
             <Grow in={true}>
                 <Paper className={props.classes.videoDescPaper}>
                     <Typography component="h1" gutterBottom variant="title">
@@ -52,6 +75,7 @@ const VideoPlayer = (props) => {
 
 VideoPlayer.propTypes = {
     classes: propTypes.object,
+    rating: propTypes.bool,
     videos: propTypes.shape({
         activeVideo: propTypes.shape({
             id: propTypes.string.isRequired,

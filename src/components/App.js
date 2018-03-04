@@ -28,9 +28,22 @@ const styles = theme => ({
 })
 
 const App = (props) => {
+    const {
+        changeCurrentVideo,
+        classes,
+        login,
+        searchVideos,
+        validateToken,
+        videos
+    } = props
+
     const renderVideoList = () => {
-        const { changeCurrentVideo, classes, videos } = props
-        const { data, errorMessage, isFetching, totalResults } = videos
+        const {
+            data,
+            errorMessage,
+            isFetching,
+            totalResults
+        } = videos
 
         if (totalResults > 0) {
             return <VideoList data={data} changeCurrentVideo={changeCurrentVideo} />
@@ -70,15 +83,15 @@ const App = (props) => {
             <Grid item xs={12} >
                 <Grid container justify="space-between" >
                     <Grid item xs={10} >
-                        <Search onSubmit={props.searchVideos} />
+                        <Search onSubmit={searchVideos} />
                     </Grid>
                     <Grid item xs={2} >
-                        <Login validateToken={props.validateToken}/>
+                        <Login validateToken={validateToken}/>
                     </Grid>
                 </Grid>
             </Grid>
             <Grid item xs={12} sm={8} md={8} >
-                <VideoPlayer videos={props.videos} />
+                <VideoPlayer rating={login.isValid} videos={videos} />
             </Grid>
             <Grid item xs={12} sm={8} md={4} >
                 {renderVideoList()}
