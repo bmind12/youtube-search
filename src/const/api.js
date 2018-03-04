@@ -4,6 +4,7 @@ export const CLIENT = {
 
 export const ENDPOINTS = {
     VALIDATE_TOKEN: 'https://www.googleapis.com/oauth2/v3/tokeninfo',
+    VIDEO_RATING: 'https://content.googleapis.com/youtube/v3/videos/rate',
     YOUTUBE_VIDEOS: 'https://www.googleapis.com/youtube/v3/search'
 }
 

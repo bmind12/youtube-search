@@ -1,7 +1,7 @@
 import React from 'react'
 import propTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { changeCurrentVideo, searchVideos } from '../AC/videos'
+import { changeCurrentVideo, rateVideo, searchVideos } from '../AC/videos'
 import { validateToken } from '../AC/login'
 
 /* Components */
@@ -32,6 +32,7 @@ const App = (props) => {
         changeCurrentVideo,
         classes,
         login,
+        rateVideo,
         searchVideos,
         validateToken,
         videos
@@ -91,7 +92,13 @@ const App = (props) => {
                 </Grid>
             </Grid>
             <Grid item xs={12} sm={8} md={8} >
-                <VideoPlayer rating={login.isValid} videos={videos} />
+                <VideoPlayer
+                    isLoggedIn={login.isValid}
+                    rating={videos.activeVideo.rating}
+                    rateVideo={rateVideo}
+                    token={login.accessToken}
+                    videos={videos}
+                />
             </Grid>
             <Grid item xs={12} sm={8} md={4} >
                 {renderVideoList()}
@@ -103,12 +110,13 @@ const App = (props) => {
 App.propTypes = {
     changeCurrentVideo: propTypes.func.isRequired,
     classes: propTypes.object,
-    searchVideos: propTypes.func.isRequired,
     login: propTypes.shape({
         accessToken: propTypes.string,
         isValid: propTypes.bool.isRequired,
         errorMessage: propTypes.string
     }),
+    rateVideo: propTypes.func.isRequired,
+    searchVideos: propTypes.func.isRequired,
     videos: propTypes.shape({
         activeVideo: propTypes.shape({
             id: propTypes.string.isRequired,
@@ -128,6 +136,7 @@ export default withStyles(styles)(
         videos
     }), {
         changeCurrentVideo,
+        rateVideo,
         searchVideos,
         validateToken
     })(App)

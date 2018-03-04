@@ -31,9 +31,16 @@ const VideoPlayer = (props) => {
     }
 
     const {
+        rateVideo,
+        isLoggedIn,
         rating,
+        token,
         videos
     } = props
+
+    const handleRatingChange = (evt) => {
+        rateVideo(videos.activeVideo.id, evt.currentTarget.dataset.rating, token)
+    }
 
     return (
         <div>
@@ -41,14 +48,28 @@ const VideoPlayer = (props) => {
                 videoId={videos.activeVideo.id}
                 opts={opts}
             />
-            { rating &&
+            { isLoggedIn &&
                 <Grow in={true}>
                     <Grid container spacing={16} justify="flex-end" >
                         <Grid item >
-                            <Button color="primary" variant="raised" >Like</Button>
+                            <Button
+                                color="primary"
+                                data-rating="like"
+                                onClick={handleRatingChange}
+                                variant={ (rating === 'like') ? "raised" : null}
+                            >
+                                Like
+                            </Button>
                         </Grid>
                         <Grid item >
-                            <Button color="secondary" variant="raised" >Dislike</Button>
+                            <Button
+                                color="secondary"
+                                data-rating="dislike"
+                                onClick={handleRatingChange}
+                                variant={ (rating === 'dislike') ? "raised" : null}
+                            >
+                                Dislike
+                            </Button>
                         </Grid>
                     </Grid>
                 </Grow>
@@ -69,7 +90,9 @@ const VideoPlayer = (props) => {
 
 VideoPlayer.propTypes = {
     classes: propTypes.object,
-    rating: propTypes.bool,
+    rateVideo: propTypes.func.isRequired,
+    rating: propTypes.string,
+    token: propTypes.string,
     videos: propTypes.shape({
         activeVideo: propTypes.shape({
             id: propTypes.string.isRequired,

@@ -3,7 +3,10 @@ import {
     CHANGE_CURRENT_VIDEO,
     FETCH_VIDEOS,
     FETCH_VIDEOS_FAILURE,
-    FETCH_VIDEOS_SUCCESS
+    FETCH_VIDEOS_SUCCESS,
+    RATE_VIDEO,
+    RATE_VIDEO_FAILURE,
+    RATE_VIDEO_SUCCESS
 } from '../const/action-creators'
 import { ENDPOINTS, PARAMETERS } from '../const/api'
 
@@ -18,6 +21,37 @@ export const changeCurrentVideo = (activeVideoId, activeVideoTitle, activeVideoD
     }
 }
 
+export const rateVideo = (videoId, rating, token) => {
+    return (dispatch) => {
+        dispatch({
+            type: RATE_VIDEO
+        })
+
+        const api = `${ENDPOINTS.VIDEO_RATING}?id=${videoId}&rating=${rating}&key=${token}`
+
+        const request = axios.create({
+            headers: {
+                authorization: `Bearer ${token}`
+            }
+        })
+
+        request.post(api)
+            .then((response) => {
+                dispatch({
+                    type: RATE_VIDEO_SUCCESS,
+                    payload: {
+                        rating
+                    }
+                })
+            })
+            .catch((error) => {
+                dispatch({
+                    type: RATE_VIDEO_FAILURE
+                })
+            })
+    }
+}
+
 export const searchVideos = ({ query }) => {
     return (dispatch) => {
         dispatch({
@@ -25,6 +59,7 @@ export const searchVideos = ({ query }) => {
         })
 
         const api = ENDPOINTS.YOUTUBE_VIDEOS
+
         const {
             KEY: key,
             MAX_RESULTS: maxResults,
@@ -61,6 +96,6 @@ export const searchVideos = ({ query }) => {
                         errorMessage: error.message
                     }
                 })
-            });
+            })
     };
 }
