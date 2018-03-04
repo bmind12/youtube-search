@@ -16,5 +16,5 @@ export const VIDEOS_DEFAULT = {
 
 export const LOGIN = {
     accessToken: null,
-    valid: false
+    isValid: false
 }

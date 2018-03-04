@@ -13,13 +13,13 @@ export default (state = LOGIN, action) => {
 
         case VALIDATE_TOKEN_SUCCESS: {
             return Object.assign({}, state, {
-                valid: true
+                isValid: true
             })
         }
 
         case VALIDATE_TOKEN_FAILURE: {
             return Object.assign({}, state, {
-                valid: false,
+                isValid: false,
                 errorMessage: payload.errorMessage
             })
         }
