@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { VALIDATE_TOKEN, VALIDATE_TOKEN_FAILURE, VALIDATE_TOKEN_SUCCESS } from '../const/action-creators'
-import { ENDPOINTS, PARAMETERS } from '../const/api'
+import { ENDPOINTS } from '../const/api'
 
 export const validateToken = (token) => {
     return (dispatch) => {
@@ -21,8 +21,6 @@ export const validateToken = (token) => {
 
         axios.get(api, config)
             .then((response) => {
-                const { items, pageInfo } = response
-
                 dispatch({
                     type: VALIDATE_TOKEN_SUCCESS
                 })

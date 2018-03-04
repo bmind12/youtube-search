@@ -3,9 +3,9 @@ import propTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { changeCurrentVideo, searchVideos } from '../AC/videos'
 import { validateToken } from '../AC/login'
-import GoogleLogin from 'react-google-login'
 
 /* Components */
+import Login from './Login'
 import Search from './Search'
 import VideoList from './VideoList'
 import VideoPlayer from './VideoPlayer'
@@ -24,9 +24,6 @@ const styles = theme => ({
     }),
     spinner: {
         height: '100%'
-    },
-    login: {
-        cursor: 'pointer'
     }
 })
 
@@ -68,10 +65,6 @@ const App = (props) => {
         }
     }
 
-    const handleLogin = (response) => {
-        props.validateToken(response.accessToken)
-    }
-
     return (
         <Grid container spacing={24} >
             <Grid item xs={12} >
@@ -80,13 +73,7 @@ const App = (props) => {
                         <Search onSubmit={props.searchVideos} />
                     </Grid>
                     <Grid item xs={2} >
-                        <GoogleLogin
-                            className={props.classes.login}
-                            clientId="523329881214-f6pvj8d3k4pd03tkbcsn84jl524hqn7f.apps.googleusercontent.com"
-                            buttonText="Ugly Login Button"
-                            onSuccess={handleLogin}
-                            onFailure={handleLogin}
-                        />
+                        <Login validateToken={props.validateToken}/>
                     </Grid>
                 </Grid>
             </Grid>
