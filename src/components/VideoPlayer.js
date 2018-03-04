@@ -8,6 +8,8 @@ import YouTubePlayer from 'react-youtube'
 import { VIDEO_HEIGHTS } from '../const/styles'
 
 /* Material UI */
+import Button from 'material-ui/Button'
+import Grid from 'material-ui/Grid'
 import Grow from 'material-ui/transitions/Grow'
 import Paper from 'material-ui/Paper'
 import Typography from 'material-ui/Typography'
@@ -28,7 +30,17 @@ const VideoPlayer = (props) => {
         height: VIDEO_HEIGHTS[props.width]
     }
 
-    const { videos } = props
+    const {
+        rateVideo,
+        isLoggedIn,
+        rating,
+        token,
+        videos
+    } = props
+
+    const handleRatingChange = (evt) => {
+        rateVideo(videos.activeVideo.id, evt.currentTarget.dataset.rating, token)
+    }
 
     return (
         <div>
@@ -36,6 +48,32 @@ const VideoPlayer = (props) => {
                 videoId={videos.activeVideo.id}
                 opts={opts}
             />
+            { isLoggedIn &&
+                <Grow in={true}>
+                    <Grid container spacing={16} justify="flex-end" >
+                        <Grid item >
+                            <Button
+                                color="primary"
+                                data-rating="like"
+                                onClick={handleRatingChange}
+                                variant={ (rating === 'like') ? "raised" : null}
+                            >
+                                Like
+                            </Button>
+                        </Grid>
+                        <Grid item >
+                            <Button
+                                color="secondary"
+                                data-rating="dislike"
+                                onClick={handleRatingChange}
+                                variant={ (rating === 'dislike') ? "raised" : null}
+                            >
+                                Dislike
+                            </Button>
+                        </Grid>
+                    </Grid>
+                </Grow>
+            }
             <Grow in={true}>
                 <Paper className={props.classes.videoDescPaper}>
                     <Typography component="h1" gutterBottom variant="title">
@@ -52,6 +90,9 @@ const VideoPlayer = (props) => {
 
 VideoPlayer.propTypes = {
     classes: propTypes.object,
+    rateVideo: propTypes.func.isRequired,
+    rating: propTypes.string,
+    token: propTypes.string,
     videos: propTypes.shape({
         activeVideo: propTypes.shape({
             id: propTypes.string.isRequired,

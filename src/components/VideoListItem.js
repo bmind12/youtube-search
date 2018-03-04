@@ -13,7 +13,6 @@ const styles = theme => ({
 })
 
 const VideoListItem = (props) => {
-
     const {
         changeCurrentVideo,
         channel,

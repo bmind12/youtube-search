@@ -2,7 +2,10 @@ import {
     CHANGE_CURRENT_VIDEO,
     FETCH_VIDEOS,
     FETCH_VIDEOS_FAILURE,
-    FETCH_VIDEOS_SUCCESS
+    FETCH_VIDEOS_SUCCESS,
+    RATE_VIDEO,
+    RATE_VIDEO_FAILURE,
+    RATE_VIDEO_SUCCESS
 } from '../const/action-creators'
 import { VIDEOS_DEFAULT } from '../const/default-states'
 
@@ -33,7 +36,7 @@ export default (state = VIDEOS_DEFAULT, action) => {
         case FETCH_VIDEOS_SUCCESS: {
             return Object.assign({}, state, {
                 data: payload.data,
-                error: '',
+                errorMessage: '',
                 isFetching: false,
                 totalResults: payload.totalResults
             })
@@ -45,6 +48,42 @@ export default (state = VIDEOS_DEFAULT, action) => {
                 errorMessage: payload.errorMessage,
                 isFetching: false,
                 totalResults: null
+            })
+        }
+
+        case RATE_VIDEO: {
+            return Object.assign({}, state, {
+                ...state,
+                activeVideo: {
+                    ...state.activeVideo,
+                    rateError: '',
+                    isRated: false,
+                    rating: null
+                }
+            })
+        }
+
+        case RATE_VIDEO_SUCCESS: {
+            return Object.assign({}, state, {
+                ...state,
+                activeVideo: {
+                    ...state.activeVideo,
+                    rateError: '',
+                    isRated: true,
+                    rating: payload.rating
+                }
+            })
+        }
+
+        case RATE_VIDEO_FAILURE: {
+            return Object.assign({}, state, {
+                ...state,
+                activeVideo: {
+                    ...state.activeVideo,
+                    isRated: false,
+                    rateError: 'Cannot rate video',
+                    rating: null
+                }
             })
         }
 

@@ -1,9 +1,11 @@
 import React from 'react'
 import propTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { changeCurrentVideo, searchVideos } from '../AC/videos'
+import { changeCurrentVideo, rateVideo, searchVideos } from '../AC/videos'
+import { validateToken } from '../AC/login'
 
 /* Components */
+import Login from './Login'
 import Search from './Search'
 import VideoList from './VideoList'
 import VideoPlayer from './VideoPlayer'
@@ -26,9 +28,23 @@ const styles = theme => ({
 })
 
 const App = (props) => {
+    const {
+        changeCurrentVideo,
+        classes,
+        login,
+        rateVideo,
+        searchVideos,
+        validateToken,
+        videos
+    } = props
+
     const renderVideoList = () => {
-        const { changeCurrentVideo, classes, videos } = props
-        const { data, errorMessage, isFetching, totalResults } = videos
+        const {
+            data,
+            errorMessage,
+            isFetching,
+            totalResults
+        } = videos
 
         if (totalResults > 0) {
             return <VideoList data={data} changeCurrentVideo={changeCurrentVideo} />
@@ -64,14 +80,27 @@ const App = (props) => {
     }
 
     return (
-        <Grid container spacing={24}>
-            <Grid item xs={12}>
-                <Search onSubmit={props.searchVideos} />
+        <Grid container spacing={24} >
+            <Grid item xs={12} >
+                <Grid container justify="space-between" >
+                    <Grid item xs={10} >
+                        <Search onSubmit={searchVideos} />
+                    </Grid>
+                    <Grid item xs={2} >
+                        <Login validateToken={validateToken}/>
+                    </Grid>
+                </Grid>
             </Grid>
-            <Grid item xs={12} sm={8} md={8}>
-                <VideoPlayer videos={props.videos} />
+            <Grid item xs={12} sm={8} md={8} >
+                <VideoPlayer
+                    isLoggedIn={login.isValid}
+                    rating={videos.activeVideo.rating}
+                    rateVideo={rateVideo}
+                    token={login.accessToken}
+                    videos={videos}
+                />
             </Grid>
-            <Grid item xs={12} sm={8} md={4}>
+            <Grid item xs={12} sm={8} md={4} >
                 {renderVideoList()}
             </Grid>
         </Grid>
@@ -81,6 +110,12 @@ const App = (props) => {
 App.propTypes = {
     changeCurrentVideo: propTypes.func.isRequired,
     classes: propTypes.object,
+    login: propTypes.shape({
+        accessToken: propTypes.string,
+        isValid: propTypes.bool.isRequired,
+        errorMessage: propTypes.string
+    }),
+    rateVideo: propTypes.func.isRequired,
     searchVideos: propTypes.func.isRequired,
     videos: propTypes.shape({
         activeVideo: propTypes.shape({
@@ -96,10 +131,13 @@ App.propTypes = {
 }
 
 export default withStyles(styles)(
-    connect(({ videos }) => ({
+    connect(({ login, videos }) => ({
+        login,
         videos
     }), {
         changeCurrentVideo,
-        searchVideos
+        rateVideo,
+        searchVideos,
+        validateToken
     })(App)
 )
