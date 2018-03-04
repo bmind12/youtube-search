@@ -15,7 +15,6 @@ const styles = theme => ({
 })
 
 const Login = (props) => {
-
     const handleLogin = (response) => {
         props.validateToken(response.accessToken)
     }
