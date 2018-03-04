@@ -13,3 +13,8 @@ export const VIDEOS_DEFAULT = {
     data: [],
     totalResults: null
 }
+
+export const LOGIN = {
+    accessToken: null,
+    valid: false
+}

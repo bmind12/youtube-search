@@ -2,6 +2,8 @@ import React from 'react'
 import propTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { changeCurrentVideo, searchVideos } from '../AC/videos'
+import { validateToken } from '../AC/login'
+import GoogleLogin from 'react-google-login'
 
 /* Components */
 import Search from './Search'
@@ -22,6 +24,9 @@ const styles = theme => ({
     }),
     spinner: {
         height: '100%'
+    },
+    login: {
+        cursor: 'pointer'
     }
 })
 
@@ -63,15 +68,32 @@ const App = (props) => {
         }
     }
 
+    const handleLogin = (response) => {
+        props.validateToken(response.accessToken)
+    }
+
     return (
-        <Grid container spacing={24}>
-            <Grid item xs={12}>
-                <Search onSubmit={props.searchVideos} />
+        <Grid container spacing={24} >
+            <Grid item xs={12} >
+                <Grid container justify="space-between" >
+                    <Grid item xs={10} >
+                        <Search onSubmit={props.searchVideos} />
+                    </Grid>
+                    <Grid item xs={2} >
+                        <GoogleLogin
+                            className={props.classes.login}
+                            clientId="523329881214-f6pvj8d3k4pd03tkbcsn84jl524hqn7f.apps.googleusercontent.com"
+                            buttonText="Ugly Login Button"
+                            onSuccess={handleLogin}
+                            onFailure={handleLogin}
+                        />
+                    </Grid>
+                </Grid>
             </Grid>
-            <Grid item xs={12} sm={8} md={8}>
+            <Grid item xs={12} sm={8} md={8} >
                 <VideoPlayer videos={props.videos} />
             </Grid>
-            <Grid item xs={12} sm={8} md={4}>
+            <Grid item xs={12} sm={8} md={4} >
                 {renderVideoList()}
             </Grid>
         </Grid>
@@ -82,6 +104,11 @@ App.propTypes = {
     changeCurrentVideo: propTypes.func.isRequired,
     classes: propTypes.object,
     searchVideos: propTypes.func.isRequired,
+    login: propTypes.shape({
+        accessToken: propTypes.string,
+        isValid: propTypes.bool.isRequired,
+        errorMessage: propTypes.string
+    }),
     videos: propTypes.shape({
         activeVideo: propTypes.shape({
             id: propTypes.string.isRequired,
@@ -96,10 +123,12 @@ App.propTypes = {
 }
 
 export default withStyles(styles)(
-    connect(({ videos }) => ({
+    connect(({ login, videos }) => ({
+        login,
         videos
     }), {
         changeCurrentVideo,
-        searchVideos
+        searchVideos,
+        validateToken
     })(App)
 )

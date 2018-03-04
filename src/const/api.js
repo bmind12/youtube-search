@@ -1,4 +1,5 @@
 export const ENDPOINTS = {
+    VALIDATE_TOKEN: 'https://www.googleapis.com/oauth2/v3/tokeninfo',
     YOUTUBE_VIDEOS: 'https://www.googleapis.com/youtube/v3/search'
 }
 
